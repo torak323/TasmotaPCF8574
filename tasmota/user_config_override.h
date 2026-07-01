@@ -1,14 +1,13 @@
 #ifndef _USER_CONFIG_OVERRIDE_H_
 #define _USER_CONFIG_OVERRIDE_H_
 
-// Enable I2C support
 #define USE_I2C
+#define USE_I2CDEVICES
 
-// Enable PCF8574 / PCF8574A I/O expander support
 #define USE_PCF8574
 #define USE_PCF8574_SENSOR
 #define USE_PCF8574_DISPLAYINPUT
 #define USE_PCF8574_MQTTINPUT
 #define USE_PCF8574_MODE2
 
-#endif  // _USER_CONFIG_OVERRIDE_H_
+#endif
