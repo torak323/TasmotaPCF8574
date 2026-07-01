@@ -1,0 +1,34 @@
+name: Build Tasmota ESP32 PCF8574
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Build tasmota32
+        run: pio run -e tasmota32
+
+      - name: Prepare artifact
+        run: |
+          mkdir -p firmware
+          cp .pio/build/tasmota32/firmware.bin firmware/tasmota32-pcf8574.bin
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tasmota32-pcf8574-firmware
+          path: firmware/tasmota32-pcf8574.bin
